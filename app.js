@@ -200,17 +200,6 @@ function post_to_discord(json) {
   try {
     console.log(`source: ${json.data.source}`);
     console.log(`matching rule: ${json.matching_rules[0].tag}`);
-    //test server
-    if(json.matching_rules.tag == "muskalert"){
-      discord_client.channels.cache
-      .get("857898742752477194")
-      .send(`https://twitter.com/${json.includes.users[0].username}/status/${json.data.id}`);
-    }else if(json.data.source == "whalebtc"){
-      discord_client.channels.cache
-      .get("857929412782981120")
-      .send(`https://twitter.com/${json.includes.users[0].username}/status/${json.data.id}`);    
-    }
-    //test server ends
 
     switch (String(json.matching_rules[0].tag)) {
       case "whale_alert":
