@@ -7,6 +7,19 @@ const CLIENTID = process.env.DISCORD_TOKEN;
 discord_client.login(CLIENTID);
 const token = process.env.TWITTER_BEARER_TOKEN;
 
+/* Heroku requries express end point for the servers */
+const express = require('express')
+const path = require('path')
+const PORT = process.env.PORT || 5000
+
+express()
+  .use(express.static(path.join(__dirname, 'public')))
+  .set('views', path.join(__dirname, 'views'))
+  .set('view engine', 'ejs')
+  .get('/', (req, res) => res.render('pages/index'))
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+/* Heroku config end */
+
 const rulesURL = "https://api.twitter.com/2/tweets/search/stream/rules";
 const streamURL =
   "https://api.twitter.com/2/tweets/search/stream?tweet.fields=attachments,author_id,created_at,public_metrics,source&expansions=author_id";
