@@ -1,5 +1,5 @@
 require("dotenv").config();
-require('log-timestamp');
+require("log-timestamp");
 const needle = require("needle");
 const Discord = require("discord.js");
 const discord_client = new Discord.Client();
@@ -8,16 +8,16 @@ discord_client.login(CLIENTID);
 const token = process.env.TWITTER_BEARER_TOKEN;
 
 /* Heroku requries express end point for the servers */
-const express = require('express')
-const path = require('path')
-const PORT = process.env.PORT || 5000
+const express = require("express");
+const path = require("path");
+const PORT = process.env.PORT || 5000;
 
 express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('pages/index'))
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+  .use(express.static(path.join(__dirname, "public")))
+  .set("views", path.join(__dirname, "views"))
+  .set("view engine", "ejs")
+  .get("/", (req, res) => res.render("pages/index"))
+  .listen(PORT, () => console.log(`Listening on ${PORT}`));
 /* Heroku config end */
 
 const rulesURL = "https://api.twitter.com/2/tweets/search/stream/rules";
@@ -27,39 +27,36 @@ const streamURL =
 const rules = [
   {
     value:
-    "from:elonmusk OR from:CoinDesk OR from:TheBlock__ OR from:TheCryptolark OR from:coinbureau OR from:Cointelegraph OR from:DocumentingBTC OR from:BTC_Archive OR from:glassnode OR from:cryptoquant_com OR from:coinmetrics OR from:AltcoinDailyio OR from:RhythmicAnalyst OR from:MMCrypto OR from:cz_binance OR from:CoinMarketCap OR from:RaoulGMI",
+      "from:elonmusk OR from:CoinDesk OR from:TheBlock__ OR from:TheCryptolark OR from:coinbureau OR from:Cointelegraph OR from:DocumentingBTC OR from:BTC_Archive OR from:glassnode OR from:cryptoquant_com OR from:coinmetrics OR from:AltcoinDailyio OR from:RhythmicAnalyst OR from:MMCrypto OR from:cz_binance OR from:CoinMarketCap OR from:RaoulGMI",
     tag: "twitter from tag",
   },
   {
-    value:"from:whale_alert",
+    value: "from:whale_alert",
     tag: "whale_alert",
   },
   {
-    value:"(from:elonmusk BTC) OR (from:elonmusk crypto) OR (from:elonmusk eth) OR (from:elonmusk bitcoin) OR (from:elonmusk coin) OR (from:elonmusk doge)",
+    value:
+      "(from:elonmusk BTC) OR (from:elonmusk crypto) OR (from:elonmusk eth) OR (from:elonmusk bitcoin) OR (from:elonmusk coin) OR (from:elonmusk doge)",
     tag: "muskalert",
   },
   {
-    value:"(from:whale_alert BTC) OR (from:whale_alert usdt)",
-    tag: "whalebtc",
-  },
-  {
-    value:"from:woonomic",
+    value: "from:woonomic",
     tag: "willywoo",
   },
   {
-    value:"from:rektcapital",
+    value: "from:rektcapital",
     tag: "rektcapital",
   },
   {
-    value:"from:BTCkeskus",
+    value: "from:BTCkeskus",
     tag: "BTCkeskus",
   },
   {
-    value:"from:100trillionUSD",
+    value: "from:100trillionUSD",
     tag: "planb",
   },
   {
-  value:"from:glassnodealerts",
+    value: "from:glassnodealerts",
     tag: "glassnodealerts",
   },
 ];
@@ -169,22 +166,21 @@ function streamConnect(retryAttempt) {
         }, 2 ** retryAttempt);
       }
     })
-    .on('done', function(err) {
+    .on("done", function (err) {
       // if our request had an error, our 'done' event will tell us.
-      if (!err){
-        console.log('Stream is done. Great success!');
+      if (!err) {
+        console.log("Stream is done. Great success!");
         setTimeout(() => {
           console.warn("A connection error occurred. Reconnecting...");
           streamConnect(++retryAttempt);
         }, 2 ** retryAttempt);
-      } else{
+      } else {
         console.log(err);
       }
-      
     })
-    .on('timeout', function(err) {
+    .on("timeout", function (err) {
       // if our request had an error, our 'done' event will tell us.
-      console.log('Stream has timeout!');
+      console.log("Stream has timeout!");
       if (!err) console.log(err);
     });
 
@@ -217,50 +213,66 @@ function post_to_discord(json) {
     switch (String(json.matching_rules[0].tag)) {
       case "whale_alert":
         discord_client.channels.cache
-        .get("856615689116712991")
-        .send(`https://twitter.com/${json.includes.users[0].username}/status/${json.data.id}`);
+          .get("856615689116712991")
+          .send(
+            `https://twitter.com/${json.includes.users[0].username}/status/${json.data.id}`
+          );
         break;
 
       case "willywoo":
         discord_client.channels.cache
-        .get("858662087790428170")
-        .send(`https://twitter.com/${json.includes.users[0].username}/status/${json.data.id}`);
+          .get("858662087790428170")
+          .send(
+            `https://twitter.com/${json.includes.users[0].username}/status/${json.data.id}`
+          );
         break;
 
       case "rektcapital":
         discord_client.channels.cache
-        .get("858662256911843349")
-        .send(`https://twitter.com/${json.includes.users[0].username}/status/${json.data.id}`);
+          .get("858662256911843349")
+          .send(
+            `https://twitter.com/${json.includes.users[0].username}/status/${json.data.id}`
+          );
         break;
 
       case "BTCkeskus":
         discord_client.channels.cache
-        .get("858662347694276629")
-        .send(`https://twitter.com/${json.includes.users[0].username}/status/${json.data.id}`);
+          .get("858662347694276629")
+          .send(
+            `https://twitter.com/${json.includes.users[0].username}/status/${json.data.id}`
+          );
         break;
 
       case "planb":
         discord_client.channels.cache
-        .get("858662436206936065")
-        .send(`https://twitter.com/${json.includes.users[0].username}/status/${json.data.id}`);
+          .get("858662436206936065")
+          .send(
+            `https://twitter.com/${json.includes.users[0].username}/status/${json.data.id}`
+          );
         break;
-        
+
       case "glassnodealerts":
         discord_client.channels.cache
-        .get("858662505907879977")
-        .send(`https://twitter.com/${json.includes.users[0].username}/status/${json.data.id}`);
+          .get("858662505907879977")
+          .send(
+            `https://twitter.com/${json.includes.users[0].username}/status/${json.data.id}`
+          );
         break;
-        
+
       case "muskalert":
         discord_client.channels.cache
-        .get("858661114203471893")
-        .send(`https://twitter.com/${json.includes.users[0].username}/status/${json.data.id}`);
+          .get("858661114203471893")
+          .send(
+            `https://twitter.com/${json.includes.users[0].username}/status/${json.data.id}`
+          );
         break;
-        
+
       default:
         discord_client.channels.cache
-        .get("856862067865026570")
-        .send(`https://twitter.com/${json.includes.users[0].username}/status/${json.data.id}`);
+          .get("856862067865026570")
+          .send(
+            `https://twitter.com/${json.includes.users[0].username}/status/${json.data.id}`
+          );
         break;
     }
   } catch (e) {
