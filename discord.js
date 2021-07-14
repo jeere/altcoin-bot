@@ -44,6 +44,10 @@ function post_to_discord(tag, message) {
           discord_client.channels.cache.get("860454169978601472").send(message);
           break;
 
+        case "chartsbtc":
+          discord_client.channels.cache.get("864814981391974430").send(message);
+          break;
+        
         default:
           discord_client.channels.cache.get("856862067865026570").send(message);
           break;

@@ -15,6 +15,10 @@ const rules = [
     tag: "twitter from tag",
   },
   {
+    value: "from:ChartsBtc",
+    tag: "chartsbtc",
+  },
+  {
     value: "from:TheCryptoLark",
     tag: "crypto_lark",
   },
