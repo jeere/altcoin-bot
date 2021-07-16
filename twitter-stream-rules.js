@@ -11,6 +11,11 @@ const rules = [
   },
   {
     value:
+      "(from:elonmusk -BTC) OR (from:elonmusk -crypto) OR (from:elonmusk -eth) OR (from:elonmusk -bitcoin) OR (from:elonmusk -coin) OR (from:elonmusk -has:images) OR (from:elonmusk -Doge)",
+    tag: "twitter from tag",
+  },
+  {
+    value:
       "from:elonmusk OR from:CoinDesk OR from:TheBlock__ OR from:coinbureau OR from:Cointelegraph OR from:DocumentingBTC OR from:BTC_Archive OR from:glassnode OR from:cryptoquant_com OR from:coinmetrics OR from:AltcoinDailyio OR from:RhythmicAnalyst OR from:MMCrypto OR from:cz_binance OR from:CoinMarketCap OR from:RaoulGMI",
     tag: "twitter from tag",
   },
