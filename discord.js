@@ -47,7 +47,11 @@ function post_to_discord(tag, message) {
         case "chartsbtc":
           discord_client.channels.cache.get("864814981391974430").send(message);
           break;
-        
+
+        case "BTC_Archive":
+          discord_client.channels.cache.get("872082913993297950").send(message);
+          break;
+
         default:
           discord_client.channels.cache.get("856862067865026570").send(message);
           break;
