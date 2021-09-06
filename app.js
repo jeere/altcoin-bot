@@ -1,20 +1,17 @@
 require("dotenv").config();
 require("log-timestamp");
 const needle = require("needle");
-const token = process.env.TWITTER_BEARER_TOKEN;
-const streamURL =
-  "https://api.twitter.com/2/tweets/search/stream?tweet.fields=attachments,author_id,created_at,public_metrics,source&expansions=author_id";
-const { rules } = require("./twitter-stream-rules");
+const { post_to_discord, discord_client } = require("./discord");
 const {
   getAllRules,
   deleteAllRules,
   setRules,
 } = require("./twitter-stream-rules");
-const {
-  post_to_discord,
-  discord_client,
-  log_to_discord,
-} = require("./discord");
+
+const token = process.env.TWITTER_BEARER_TOKEN;
+const streamURL =
+  "https://api.twitter.com/2/tweets/search/stream?tweet.fields=attachments,author_id,created_at,public_metrics,source&expansions=author_id";
+
 let keep_alive_counter = 0;
 let last_stream_date_received = new Date();
 last_stream_date_received.setSeconds(
@@ -153,16 +150,3 @@ process.on("exit", function (code) {
 process.on("SIGINT", function () {
   process.exit(-1);
 });
-
-/* Heroku requries express end point for the servers */
-// const express = require("express");
-// const path = require("path");
-// const PORT = process.env.PORT || 5000;
-
-// express()
-//   .use(express.static(path.join(__dirname, "public")))
-//   .set("views", path.join(__dirname, "views"))
-//   .set("view engine", "ejs")
-//   .get("/", (req, res) => res.render("pages/index"))
-//   .listen(PORT, () => console.log(`Listening on ${PORT}`));
-/* Heroku config end */
