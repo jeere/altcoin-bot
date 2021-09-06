@@ -57,7 +57,23 @@ const rules = [
   },
   {
     value: "from:DCLBlogger",
-    tag: "matty",
+    tag: "nft",
+  },
+  {
+    value: "from:beaniemaxi",
+    tag: "nft",
+  },
+  {
+    value: "from:elliotrades",
+    tag: "nft",
+  },
+  {
+    value: "from:elliotrades",
+    tag: "nft",
+  },
+  {
+    value: "from:ZssBecker",
+    tag: "nft",
   },
 ];
 
