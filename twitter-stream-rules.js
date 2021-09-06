@@ -55,6 +55,10 @@ const rules = [
     value: "from:glassnodealerts",
     tag: "glassnodealerts",
   },
+  {
+    value: "from:DCLBlogger",
+    tag: "matty",
+  },
 ];
 
 module.exports = {
