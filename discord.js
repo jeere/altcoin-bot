@@ -52,6 +52,10 @@ function post_to_discord(tag, message) {
           discord_client.channels.cache.get("872082913993297950").send(message);
           break;
 
+        case "coinbureau":
+          discord_client.channels.cache.get("899277146936213524").send(message);
+          break;
+  
         case "nft":
           discord_client.channels.cache.get("884297534628057138").send(message);
           break;

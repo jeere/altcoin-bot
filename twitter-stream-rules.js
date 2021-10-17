@@ -20,6 +20,18 @@ const rules = [
     tag: "twitter from tag",
   },
   {
+    value: "from:Kryptosuomii",
+    tag: "twitter from tag",
+  },
+  {
+    value: "from:WClementeIII",
+    tag: "twitter from tag",
+  },
+  {
+    value: "from:coinbureau",
+    tag: "coinbureau",
+  },
+  {
     value: "from:BTC_Archive",
     tag: "BTC_Archive",
   },
