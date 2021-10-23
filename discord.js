@@ -60,6 +60,14 @@ function post_to_discord(tag, message) {
           discord_client.channels.cache.get("884297534628057138").send(message);
           break;
 
+        case "kryptosuomii":
+          discord_client.channels.cache.get("901329744329588787").send(message);
+          break;
+
+        case "WClementeIII":
+          discord_client.channels.cache.get("901329814642896957").send(message);
+          break;
+  
         default:
           discord_client.channels.cache.get("856862067865026570").send(message);
           break;

@@ -21,11 +21,11 @@ const rules = [
   },
   {
     value: "from:Kryptosuomii",
-    tag: "twitter from tag",
+    tag: "kryptosuomii",
   },
   {
     value: "from:WClementeIII",
-    tag: "twitter from tag",
+    tag: "WClementeIII",
   },
   {
     value: "from:coinbureau",
