@@ -20,7 +20,7 @@ const rules = [
     tag: "twitter from tag",
   },
   {
-    value: "from:Kryptosuomii",
+    value: "from:krypto_suomi",
     tag: "kryptosuomii",
   },
   {
